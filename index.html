@@ -1,481 +1,211 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kry Diário | O Melhor Camp</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Tailwind CSS -->
+    <title>VNX DIÁRIO | Organização Profissional de FF</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        gaming: ['Orbitron', 'sans-serif'],
-                        display: ['Rajdhani', 'sans-serif'],
-                    },
-                    colors: {
-                        discord: '#5865F2',
-                        discordHover: '#4752C4',
-                        brand: {
-                            orange: '#FF5722',
-                            yellow: '#FFC107',
-                            dark: '#0B0E14',
-                            darker: '#07090D',
-                            card: '#151A23'
-                        }
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Custom Styles for Gamer Aesthetic */
+        :root {
+            --primary-blue: #0088ff;
+            --dark-bg: #05070a;
+            --card-bg: #0f1218;
+        }
         body {
-            background-color: #07090D;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 87, 34, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 193, 7, 0.1) 0px, transparent 50%);
-            background-attachment: fixed;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            scroll-behavior: smooth;
         }
-
-        .neon-text {
-            text-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 20px rgba(255, 87, 34, 0.3);
-        }
-
-        .btn-neon {
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .btn-neon::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            z-index: -2;
-        }
-
-        .btn-neon::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-
-        .btn-neon:hover::before {
-            width: 100%;
-        }
-
-        .glass-card {
-            background: rgba(21, 26, 35, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
+        .font-gamer { font-family: 'Rajdhani', sans-serif; }
         
-        .discord-glow:hover {
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
         }
 
-        /* Checkbox styling for gamer vibe */
-        input[type="checkbox"]:checked {
-            background-color: #FFC107;
-            border-color: #FFC107;
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-blue), #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .discord-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(88, 101, 242, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0); }
         }
     </style>
 </head>
-<body class="text-gray-300 min-h-screen flex flex-col selection:bg-brand-orange selection:text-white">
+<body class="leading-relaxed">
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-card border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-crosshairs text-brand-orange text-3xl"></i>
-                    <span class="font-gaming font-bold text-2xl text-white tracking-wider">KRY <span class="text-brand-orange">DIÁRIO</span></span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="font-display font-semibold text-lg hover:text-brand-orange transition-colors">Início</a>
-                    <a href="#regras" class="font-display font-semibold text-lg hover:text-brand-orange transition-colors">Premiação</a>
-                    <a href="#calculadora" class="font-display font-semibold text-lg hover:text-brand-orange transition-colors">Simulador</a>
-                    <a href="#discord" class="bg-discord hover:bg-discordHover text-white px-6 py-2 rounded-lg font-display font-bold text-lg transition-all discord-glow flex items-center gap-2">
-                        <i class="fa-brands fa-discord"></i> Entrar no Servidor
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <!-- Header / Nav -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold font-gamer text-xl italic text-white">V</div>
+                <span class="text-xl font-bold font-gamer tracking-wider text-white uppercase">VNX <span class="text-blue-500">Diário</span></span>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-gray-800 absolute w-full">
-            <div class="px-2 pt-2 pb-4 space-y-1">
-                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-display font-semibold hover:bg-gray-800 hover:text-brand-orange text-white">Início</a>
-                <a href="#regras" class="block px-3 py-2 rounded-md text-base font-display font-semibold hover:bg-gray-800 hover:text-brand-orange text-white">Premiação</a>
-                <a href="#calculadora" class="block px-3 py-2 rounded-md text-base font-display font-semibold hover:bg-gray-800 hover:text-brand-orange text-white">Simulador</a>
-                <a href="#discord" class="block px-3 py-2 mt-4 text-center rounded-md text-base font-display font-bold bg-discord text-white">
-                    <i class="fa-brands fa-discord mr-2"></i> Entrar no Discord
-                </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#sobre" class="hover:text-blue-400 transition">Sobre</a>
+                <a href="#horarios" class="hover:text-blue-400 transition">Horários</a>
+                <a href="#regras" class="hover:text-blue-400 transition">Regras</a>
+                <a href="#como-entrar" class="hover:text-blue-400 transition">Como Entrar</a>
             </div>
+            <a href="https://discord.gg/SEU_CONVITE" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded font-bold text-xs transition uppercase tracking-tighter">
+                Entrar agora
+            </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 relative overflow-hidden flex-grow flex items-center">
-        <!-- Abstract Background Shapes -->
-        <div class="absolute top-1/4 right-10 w-72 h-72 bg-brand-orange rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse-slow"></div>
-        <div class="absolute bottom-10 left-10 w-72 h-72 bg-brand-yellow rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-pulse-slow" style="animation-delay: 1s;"></div>
-
-        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="space-y-8 text-center lg:text-left">
-                <div class="inline-block px-4 py-1.5 rounded-full border border-brand-orange/30 bg-brand-orange/10 text-brand-orange font-display font-bold uppercase tracking-widest text-sm mb-2">
-                    Salas Personalizadas Diárias
-                </div>
-                <h1 class="text-5xl md:text-7xl font-gaming font-black text-white leading-tight">
-                    AMASSE E <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-yellow neon-text">
-                        FAÇA DINHEIRO
-                    </span>
-                </h1>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 font-display">
-                    O Kry Diário é o servidor onde sua habilidade vira PIX. Pague a entrada, faça kills e leve a premiação pra casa. O BOOYAH nunca valeu tanto!
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                    <a href="#regras" class="btn-neon bg-gradient-to-r from-brand-orange to-brand-yellow text-brand-darker px-8 py-4 rounded-lg font-gaming font-bold text-lg tracking-wide hover:scale-105 transform">
-                        <i class="fa-solid fa-skull mr-2"></i> VER REGRAS
-                    </a>
-                    <a href="#discord" class="bg-brand-card border border-gray-700 hover:border-discord text-white px-8 py-4 rounded-lg font-gaming font-bold text-lg tracking-wide hover:bg-discord/10 transition-all flex items-center justify-center gap-2 group">
-                        <i class="fa-brands fa-discord text-discord group-hover:text-white transition-colors"></i> ENTRAR NO DISCORD
-                    </a>
-                </div>
-            </div>
-
-            <!-- Hero Graphic (Stats Cards) -->
-            <div class="hidden lg:block relative animate-float">
-                <div class="absolute inset-0 bg-gradient-to-tr from-brand-orange/20 to-transparent rounded-3xl transform rotate-3 scale-105"></div>
-                <div class="glass-card p-8 rounded-3xl relative z-10 border border-gray-700">
-                    <div class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
-                        <h3 class="font-gaming font-bold text-2xl text-white">ÚLTIMA SALA</h3>
-                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold animate-pulse">AO VIVO</span>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4 bg-black/40 p-4 rounded-xl border border-gray-800">
-                            <div class="w-12 h-12 bg-brand-orange rounded-full flex items-center justify-center font-bold text-white text-xl">1º</div>
-                            <div class="flex-grow">
-                                <div class="font-display font-bold text-xl text-white">Player_KRYX</div>
-                                <div class="text-sm text-gray-400">BOOYAH + 8 Kills</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="font-gaming font-bold text-green-400 text-xl">R$ 42,00</div>
-                                <div class="text-xs text-gray-500">Lucro líquido</div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4 bg-black/20 p-4 rounded-xl border border-gray-800 opacity-80">
-                            <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center font-bold text-white text-xl">2º</div>
-                            <div class="flex-grow">
-                                <div class="font-display font-bold text-lg text-white">NinjaAssassino</div>
-                                <div class="text-sm text-gray-400">5 Kills</div>
-                            </div>
-                            <div class="text-right">
-                                <div class="font-gaming font-bold text-green-400 text-lg">R$ 20,00</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Economy / Rules Section -->
-    <section id="regras" class="py-20 bg-brand-dark relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-gaming font-bold text-white mb-4">ECONOMIA DA <span class="text-brand-orange">SALA</span></h2>
-                <p class="text-gray-400 font-display text-xl max-w-2xl mx-auto">Sistema simples, justo e lucrativo. Invista na sua gameplay e saia com o bolso cheio.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card Entrada -->
-                <div class="glass-card rounded-2xl p-8 text-center border-t-4 border-t-gray-500 hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-20 h-20 mx-auto bg-gray-800 rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-3">
-                        <i class="fa-solid fa-ticket text-4xl text-gray-300"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-2xl text-white mb-2">TAXA DE ENTRADA</h3>
-                    <p class="text-gray-400 mb-6 font-medium">Valor fixo para garantir sua vaga na sala personalizada.</p>
-                    <div class="font-gaming font-bold text-4xl text-white">R$ <span class="text-5xl">5</span><span class="text-2xl">,00</span></div>
-                </div>
-
-                <!-- Card Kill -->
-                <div class="glass-card rounded-2xl p-8 text-center border-t-4 border-t-brand-orange hover:-translate-y-2 transition-transform duration-300 relative">
-                    <div class="absolute -top-4 -right-4 bg-brand-orange text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider text-black transform rotate-12">Mais comum</div>
-                    <div class="w-20 h-20 mx-auto bg-brand-orange/20 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-orange/20 -rotate-3">
-                        <i class="fa-solid fa-crosshairs text-4xl text-brand-orange"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-2xl text-white mb-2">POR ABATE (KILL)</h3>
-                    <p class="text-gray-400 mb-6 font-medium">Cada jogador que você eliminar aumenta seu lucro.</p>
-                    <div class="font-gaming font-bold text-4xl text-brand-orange">R$ <span class="text-5xl">4</span><span class="text-2xl">,00</span></div>
-                </div>
-
-                <!-- Card Booyah -->
-                <div class="glass-card rounded-2xl p-8 text-center border-t-4 border-t-brand-yellow hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-20 h-20 mx-auto bg-brand-yellow/20 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-brand-yellow/20 rotate-3">
-                        <i class="fa-solid fa-trophy text-4xl text-brand-yellow"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-2xl text-white mb-2">BÔNUS BOOYAH</h3>
-                    <p class="text-gray-400 mb-6 font-medium">Sobreviveu até o fim e venceu? Leve o prêmio máximo.</p>
-                    <div class="font-gaming font-bold text-4xl text-brand-yellow">+R$ <span class="text-5xl">10</span><span class="text-2xl">,00</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section id="calculadora" class="py-20 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass-card border border-brand-orange/30 rounded-3xl p-8 md:p-12 shadow-2xl shadow-brand-orange/10">
-                <div class="text-center mb-10">
-                    <i class="fa-solid fa-calculator text-4xl text-brand-orange mb-4"></i>
-                    <h2 class="text-3xl md:text-4xl font-gaming font-bold text-white mb-2">SIMULADOR DE <span class="text-brand-orange">LUCRO</span></h2>
-                    <p class="text-gray-400 font-display text-lg">Descubra quanto você pode faturar em uma única partida.</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <!-- Controls -->
-                    <div class="space-y-8">
-                        <div>
-                            <label class="flex justify-between items-center mb-4">
-                                <span class="font-display font-bold text-xl text-white">Quantas Kills?</span>
-                                <span id="killsDisplay" class="font-gaming font-bold text-2xl text-brand-orange">0</span>
-                            </label>
-                            <input type="range" id="killsRange" min="0" max="20" value="0" 
-                                class="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-brand-orange">
-                            <div class="flex justify-between text-xs text-gray-500 mt-2 font-gaming">
-                                <span>0</span>
-                                <span>10</span>
-                                <span>20+</span>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-                            <label class="flex items-center cursor-pointer">
-                                <div class="relative flex items-center">
-                                    <input type="checkbox" id="booyahCheck" class="w-6 h-6 rounded border-gray-600 text-brand-yellow focus:ring-brand-yellow focus:ring-offset-gray-900 bg-gray-700">
-                                </div>
-                                <div class="ml-4">
-                                    <span class="font-display font-bold text-xl text-white block">Fez o BOOYAH?</span>
-                                    <span class="text-sm text-gray-400">Adiciona R$ 10,00 ao total</span>
-                                </div>
-                                <i class="fa-solid fa-trophy text-brand-yellow text-2xl ml-auto opacity-50" id="trophyIcon"></i>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Result Box -->
-                    <div class="bg-black/40 rounded-2xl p-8 border-2 border-gray-800 text-center relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-orange/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <p class="font-display text-gray-400 text-lg mb-2">Seu Lucro Líquido</p>
-                        <p class="text-xs text-gray-500 mb-4">(Já descontando os R$ 5 da entrada)</p>
-                        
-                        <div id="resultContainer" class="font-gaming font-black text-6xl text-gray-500 transition-colors duration-300">
-                            -R$ 5,00
-                        </div>
-                        
-                        <div id="statusMessage" class="mt-6 font-display font-bold text-lg text-red-400">
-                            Você precisa de pelo menos 2 kills para lucrar!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Discord CTA Section -->
-    <section id="discord" class="py-24 bg-[#5865F2] relative overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="discord-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor" />
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#discord-pattern)" />
-            </svg>
-        </div>
-
-        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <i class="fa-brands fa-discord text-6xl md:text-8xl text-white mb-6 animate-bounce"></i>
-            <h2 class="text-4xl md:text-6xl font-gaming font-black text-white mb-6 uppercase">
-                Pronto para o Combate?
-            </h2>
-            <p class="text-xl text-indigo-100 font-display mb-10 max-w-2xl mx-auto">
-                Junte-se a centenas de jogadores no servidor do Kry Diário. Salas abertas todos os dias, moderação ativa e pagamentos rápidos via PIX.
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full -z-10"></div>
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold font-gamer text-white mb-6 leading-none">
+                ORGANIZAÇÃO PROFISSIONAL <br><span class="text-blue-500">VNX DIÁRIO</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+                Somos o ponto de encontro de lines competitivas que procuram evolução constante através de treinos diários organizados e alto nível técnico.
             </p>
-            <a href="#" class="inline-block bg-white text-discord hover:bg-gray-100 px-10 py-5 rounded-full font-gaming font-bold text-2xl shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] transition-all transform hover:-translate-y-1">
-                ENTRAR NO SERVIDOR <i class="fa-solid fa-arrow-right ml-2"></i>
-            </a>
-            <p class="mt-6 text-indigo-200 text-sm font-display font-medium">É necessário ter uma conta no Discord para participar.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://discord.gg/SEU_CONVITE" target="_blank" class="discord-pulse bg-[#5865F2] hover:bg-[#4752c4] text-white px-8 py-4 rounded-lg font-bold flex items-center gap-3 transition-all transform hover:scale-105">
+                    <i class="fab fa-discord text-2xl"></i>
+                    COMUNIDADE NO DISCORD
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-crosshairs text-brand-orange text-2xl"></i>
-                    <span class="font-gaming font-bold text-xl text-white tracking-wider">KRY <span class="text-brand-orange">DIÁRIO</span></span>
+    <div class="section-divider"></div>
+
+    <!-- Informações detalhadas -->
+    <section id="sobre" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl font-bold font-gamer text-white mb-6 flex items-center gap-3">
+                    <span class="w-1 h-8 bg-blue-500 inline-block"></span>
+                    O QUE É A VNX DIÁRIO?
+                </h2>
+                <div class="space-y-4 text-gray-400">
+                    <p>A VNX Diário nasceu com o propósito de profissionalizar o cenário de "X-Treino". Não somos apenas um grupo de mensagens, somos uma infraestrutura completa no Discord dedicada à performance.</p>
+                    <p>Aqui, organizamos tabelas, monitoramos resultados e garantimos que as salas sejam preenchidas por equipas que levam o jogo a sério.</p>
                 </div>
                 
-                <div class="text-gray-500 font-display text-sm text-center md:text-left">
-                    &copy; 2023 Kry Diário. Todos os direitos reservados.<br>
-                    Este site não é afiliado à Garena ou ao jogo Free Fire.
-                </div>
-
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-brand-orange hover:text-white transition-colors">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 hover:bg-discord hover:text-white transition-colors">
-                        <i class="fa-brands fa-discord"></i>
-                    </a>
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="bg-gray-900/50 p-4 rounded-lg border border-white/5">
+                        <h4 class="text-white font-bold mb-1 italic">Treinos Gratuitos</h4>
+                        <p class="text-sm text-gray-500">Salas abertas para a comunidade evoluir sem custos.</p>
+                    </div>
+                    <div class="bg-gray-900/50 p-4 rounded-lg border border-white/5">
+                        <h4 class="text-white font-bold mb-1 italic">Salas Premium</h4>
+                        <p class="text-sm text-gray-500">Competições exclusivas com premiação e nível elite.</p>
+                    </div>
                 </div>
             </div>
+            <div class="bg-blue-600/5 p-8 rounded-3xl border border-blue-500/20">
+                <h3 id="horarios" class="text-2xl font-bold font-gamer text-white mb-6">CRONOGRAMA DE SALAS</h3>
+                <ul class="space-y-4">
+                    <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span class="text-gray-300">Treino Tarde</span>
+                        <span class="text-blue-400 font-bold">14h00 - 17h00</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span class="text-gray-300">Treino Noite</span>
+                        <span class="text-blue-400 font-bold">19h00 - 22h00</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span class="text-gray-300">Madrugadão</span>
+                        <span class="text-blue-400 font-bold">23h00 - 01h00</span>
+                    </li>
+                    <li class="flex justify-between items-center border-b border-white/5 pb-2">
+                        <span class="text-gray-300">Finais de Semana</span>
+                        <span class="text-yellow-500 font-bold font-gamer italic">CAMPEONATOS</span>
+                    </li>
+                </ul>
+                <p class="mt-6 text-xs text-gray-500">*Os horários podem sofrer alterações. Consulte o canal #avisos no Discord.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regras -->
+    <section id="regras" class="py-20 px-6 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold font-gamer text-white">REGRAS DE CONVIVÊNCIA</h2>
+                <p class="text-gray-400 mt-2 text-sm uppercase tracking-widest">Para manter o nível competitivo, seguimos normas rígidas</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-black/40 p-6 rounded-xl border border-red-500/10 hover:border-red-500/30 transition">
+                    <i class="fas fa-ban text-red-500 text-xl mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Zero Toxicidade</h4>
+                    <p class="text-gray-500 text-sm">Respeite staffs e adversários. Insultos resultam em ban imediato.</p>
+                </div>
+                <div class="bg-black/40 p-6 rounded-xl border border-blue-500/10 hover:border-blue-500/30 transition">
+                    <i class="fas fa-clock text-blue-500 text-xl mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Pontualidade</h4>
+                    <p class="text-gray-500 text-sm">Atrasos de mais de 5 minutos resultam na perda da vaga na sala.</p>
+                </div>
+                <div class="bg-black/40 p-6 rounded-xl border border-yellow-500/10 hover:border-yellow-500/30 transition">
+                    <i class="fas fa-shield-alt text-yellow-500 text-xl mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Fair Play</h4>
+                    <p class="text-gray-500 text-sm">Proibido uso de programas de terceiros ou bugs que dão vantagem.</p>
+                </div>
+                <div class="bg-black/40 p-6 rounded-xl border border-green-500/10 hover:border-green-500/30 transition">
+                    <i class="fas fa-check-circle text-green-500 text-xl mb-4"></i>
+                    <h4 class="text-white font-bold mb-2">Presença</h4>
+                    <p class="text-gray-500 text-sm">Inscritos que não comparecerem serão negativados na organização.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guia Passo a Passo -->
+    <section id="como-entrar" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold font-gamer text-white text-center mb-12 italic">COMO PARTICIPAR?</h2>
+            
+            <div class="space-y-12">
+                <div class="flex gap-6 items-start">
+                    <span class="step-number text-6xl font-bold font-gamer leading-none">01</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Entre no Servidor</h4>
+                        <p class="text-gray-400">Clique no botão abaixo ou nos menus do site para ser redirecionado para o nosso hub no Discord.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 items-start border-l-2 border-blue-500/20 ml-8 pl-12">
+                    <span class="step-number text-6xl font-bold font-gamer leading-none">02</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Leia as Regras & Verifique-se</h4>
+                        <p class="text-gray-400">Vá até ao canal #verificação e aceite as normas da comunidade para desbloquear as salas de treino.</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 items-start">
+                    <span class="step-number text-6xl font-bold font-gamer leading-none">03</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">Inscrição de Lines</h4>
+                        <p class="text-gray-400">Nos canais de #inscrição, preencha os dados da sua line para garantir a vaga nos horários disponíveis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 px-6 border-t border-white/5 text-center text-gray-600 text-sm">
+        <div class="max-w-7xl mx-auto">
+            <p class="mb-4 uppercase tracking-widest font-bold">VNX DIÁRIO • COMPETITIVE FREE FIRE HIVE</p>
+            <p>© 2024 Todos os direitos reservados. Não afiliado à Garena.</p>
         </div>
     </footer>
 
-    <!-- Interactive Scripts -->
-    <script>
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu on click link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Calculator Logic
-        const killsRange = document.getElementById('killsRange');
-        const killsDisplay = document.getElementById('killsDisplay');
-        const booyahCheck = document.getElementById('booyahCheck');
-        const resultContainer = document.getElementById('resultContainer');
-        const statusMessage = document.getElementById('statusMessage');
-        const trophyIcon = document.getElementById('trophyIcon');
-
-        const ENTRY_FEE = 5;
-        const KILL_REWARD = 4;
-        const BOOYAH_REWARD = 10;
-
-        function calculateProfit() {
-            const kills = parseInt(killsRange.value);
-            const isBooyah = booyahCheck.checked;
-            
-            killsDisplay.textContent = kills;
-
-            // Update Icon Opacity
-            if (isBooyah) {
-                trophyIcon.classList.remove('opacity-50');
-                trophyIcon.classList.add('opacity-100', 'animate-pulse');
-            } else {
-                trophyIcon.classList.add('opacity-50');
-                trophyIcon.classList.remove('opacity-100', 'animate-pulse');
-            }
-
-            // Calculation
-            const grossIncome = (kills * KILL_REWARD) + (isBooyah ? BOOYAH_REWARD : 0);
-            const netProfit = grossIncome - ENTRY_FEE;
-
-            // Formatting
-            const formattedValue = `R$ ${Math.abs(netProfit).toFixed(2).replace('.', ',')}`;
-
-            if (netProfit < 0) {
-                resultContainer.textContent = `-${formattedValue}`;
-                resultContainer.className = "font-gaming font-black text-5xl md:text-6xl text-red-500 transition-colors duration-300";
-                
-                let needed = isBooyah ? 0 : 2 - kills; // Se tem booyah, sempre lucra (10-5=5)
-                if(isBooyah) {
-                    statusMessage.textContent = "Com BOOYAH, o lucro é garantido!";
-                    statusMessage.className = "mt-6 font-display font-bold text-lg text-brand-yellow";
-                } else {
-                    statusMessage.textContent = `Prejuízo... Faça mais ${needed} kill(s) para lucrar!`;
-                    statusMessage.className = "mt-6 font-display font-bold text-lg text-red-400";
-                }
-            } else if (netProfit === 0) {
-                resultContainer.textContent = formattedValue;
-                resultContainer.className = "font-gaming font-black text-5xl md:text-6xl text-gray-400 transition-colors duration-300";
-                statusMessage.textContent = "Empatou! Pelo menos não perdeu a entrada.";
-                statusMessage.className = "mt-6 font-display font-bold text-lg text-gray-400";
-            } else {
-                resultContainer.textContent = `+${formattedValue}`;
-                resultContainer.className = "font-gaming font-black text-5xl md:text-6xl text-green-400 drop-shadow-[0_0_15px_rgba(74,222,128,0.5)] transition-all duration-300 transform scale-105";
-                
-                if (netProfit > 30) {
-                    statusMessage.textContent = "🔥 AMASSOU! Lucro insano!";
-                    statusMessage.className = "mt-6 font-display font-bold text-lg text-brand-orange animate-bounce";
-                } else {
-                    statusMessage.textContent = "Lucro no bolso! Muito bom.";
-                    statusMessage.className = "mt-6 font-display font-bold text-lg text-green-400";
-                }
-            }
-        }
-
-        // Event Listeners for Calculator
-        killsRange.addEventListener('input', calculateProfit);
-        booyahCheck.addEventListener('change', calculateProfit);
-
-        // Initial Calculation
-        calculateProfit();
-    </script>
 </body>
 </html>
